@@ -12,7 +12,7 @@ int speedPin = 11;
 Servo EscServo;
 Servo SteerServo;
 
-int carSp = 0:
+int carSp = 0;
 
 void setup(){
   Serial.begin(9600);
@@ -43,24 +43,24 @@ void loop(){
   EscServo.writeMicroseconds(carSp);
   
   if (sp > 0 && sp < 100){
-      carSp = sp
+      carSp = sp;
   }
   
   //left
-  if (sp == a){
+  if (sp == 'a'){
     SteerServo.write(0);
   }
   else 
   //right
-  if (sp == d){
+  if (sp == 'd'){
     SteerServo.write(120);
   }
   else
-  if (sp == q){
+  if (sp == 'q'){
     SteerServo.write(90);
   }
   else 
-  if (st == e){
+  if (sp == 'e'){
     SteerServo.write(30);
   }
   
