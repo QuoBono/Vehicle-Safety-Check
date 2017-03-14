@@ -59,8 +59,8 @@ void setup(){
     pinMode(steerCarInput, INPUT); //steering
     pinMode(steerCarOutput, OUTPUT);
     pinMode(SpeedCarOutput, OUTPUT);
-    EscServo.attach(SpeedCarOutput); //speed pin
-    SteerServo.attach(steerCarOutput); //steer pin
+    EscServo.attach(11); //speed pin
+    SteerServo.attach(9); //steer pin
     /*
      * Set car wheels to the front and NEUTRAL speed.
      */
