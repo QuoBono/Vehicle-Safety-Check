@@ -107,7 +107,7 @@ void loop(){
                 /*
                  * Last key pressed is used in order to ovoid damaging the motors when someone goes from front to backwards or the other way.
                  */
-            case 'w': if(lastPressed == 'x'){ EscServo.write(neutral); delay(1000);}EscServo.write(neutral + 100); if(neutral < 1550){neutral = neutral + 10;} lastPressed = 'w';
+            case 'w': if(lastPressed == 'x'){ EscServo.write(NEUTRAL); delay(1000);}EscServo.write(neutral + 100); if(neutral < 1550){neutral = neutral + 10;} lastPressed = 'w';
                 break;
             case 's': EscServo.write(NEUTRAL); SteerServo.write(straight); lastPressed = 's';
                 break;
@@ -115,7 +115,7 @@ void loop(){
                 break;
             case 'a': SteerServo.write(left); if(left > 0){ left = left - 10;} lastPressed = 'a'; //increment the steering if you press more.
                 break;
-            case 'x': if(lastPressed == 'w'){ EscServo.write(neutral); delay(1000);} EscServo.write(NEUTRAL - 200); SteerServo.write(straight); lastPressed = 'w';
+            case 'x': if(lastPressed == 'w'){ EscServo.write(NEUTRAL); delay(1000);} EscServo.write(NEUTRAL - 200); SteerServo.write(straight); lastPressed = 'w';
                 break;
         }
         
