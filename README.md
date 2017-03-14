@@ -1,14 +1,14 @@
-### Vehicle-Safety-Check
+# Vehicle-Safety-Check
 
 ## Requirements:
 
-# 1 RC controller:
+### 1 RC controller:
 
 1.1 Accelerate/Brake
 
 1.2 Steer left/right
 
-# 2 With your software:
+### 2 With your software:
 
 2.1 Move forwards with a specified speed
 
