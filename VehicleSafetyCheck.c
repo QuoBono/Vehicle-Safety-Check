@@ -9,6 +9,7 @@
 #define RIGHT 80
 #define LEFT 60
 
+
 #include <Servo.h>
 
 int speedCarInput = 5; //speed
@@ -19,6 +20,8 @@ int SpeedCarOutput = 11;
 int straight = 70;
 bool joystick = false;
 char userInput;
+
+
 int speedValue = NEUTRAL;
 int right = RIGHT;
 int left = LEFT;
@@ -64,25 +67,28 @@ void loop(){
             left = LEFT;
             speedValueRev = NEUTRALREVERSE;
             steerValue = straight;
-            controller = false;
             
             SteerServo.write(straight);
             EscServo.writeMicroseconds(NEUTRAL);
             controller = true;
             
-            delay(2000);
+            delay(20);
             Serial.println("remotel");
             Serial.print(controller);
-            /*
-             int accelerate = pulseIn(speedCarInput, HIGH); //speed
-             int steer = pulseIn(steerCarInput, HIGH); //steering
-             */
         }
         
-        /*
-         SteerServo.write(steer);
-         EscServo.writeMicroseconds(accelerate);
-         */
+        int i = pulseIn(speedCarInput, HIGH); //Get speed
+        int j = pulseIn(steerCarInput, HIGH); //Get steering
+        
+        Serial.println("this is speed");
+        Serial.println(i);
+        delay(2000);
+        Serial.println("this is steer");
+        Serial.println(j);
+        delay(2000);
+        
+        EscServo.writeMicroseconds(i); //speed
+        SteerServo.write(j); //steering
         
         
         
@@ -98,13 +104,9 @@ void loop(){
             
             SteerServo.write(straight);
             EscServo.writeMicroseconds(NEUTRAL);
-            delay(2000);
+            delay(20);
             Serial.println("serial");
             Serial.print(controller);
-            /*
-             int accelerate = pulseIn(speedCarInput, HIGH); //speed
-             int steer = pulseIn(steerCarInput, HIGH); //steering
-             */
         }
         userInput = Serial.read();
         
