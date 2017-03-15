@@ -59,9 +59,17 @@ void loop(){
         //Serial.println(controller);
         
         if(!controller){
+            speedValue = NEUTRAL;
+            right = RIGHT;
+            left = LEFT;
+            speedValueRev = NEUTRALREVERSE;
+            steerValue = straight;
+            controller = false;
+            
             SteerServo.write(straight);
             EscServo.writeMicroseconds(NEUTRAL);
             controller = true;
+            
             delay(2000);
             Serial.println("remotel");
             Serial.print(controller);
@@ -81,9 +89,15 @@ void loop(){
     } else if (!joystick) {
         
         if(controller){
+            speedValue = NEUTRAL;
+            right = RIGHT;
+            left = LEFT;
+            speedValueRev = NEUTRALREVERSE;
+            steerValue = straight;
+            controller = false;
+            
             SteerServo.write(straight);
             EscServo.writeMicroseconds(NEUTRAL);
-            controller = false;
             delay(2000);
             Serial.println("serial");
             Serial.print(controller);
