@@ -120,6 +120,12 @@ void loop(){
         
         switch(userInput){
             case 'w':
+                if(speedValue < NEUTRAL){
+                    EscServo.writeMicroseconds(NEUTRAL);
+                    delay(100);
+                    speedValueRev = NEUTRALREVERSE;
+                    speedValue = NEUTRAL;
+                }
                 speedValue = speedValue+50;
                 break;
                 
@@ -142,8 +148,11 @@ void loop(){
                 break;
                 
             case 'x':
-                EscServo.writeMicroseconds(NEUTRAL);
-                delay(100);
+                if(speedValue > NEUTRAL){
+                    EscServo.writeMicroseconds(NEUTRAL);
+                    delay(100);
+                    speedValue = NEUTRALREVERSE;
+                }
                 speedValueRev = speedValueRev - 50;
                 speedValue = speedValueRev;
                 break;
