@@ -2,12 +2,14 @@
 /*author Group9
  */
 
+
 #define NEUTRAL 1400
 #define FULL 1600
 #define BREAK 1000
 #define NEUTRALREVERSE 1200
 #define RIGHT 80
 #define LEFT 60
+
 
 
 #include <Servo.h>
@@ -72,11 +74,16 @@ void loop(){
             Serial.println("remotel");
         }
         
+        
         Serial.println("Joystick");
         
         int i = pulseIn(speedCarInput, HIGH); //Get speed
         int j = pulseIn(steerCarInput, HIGH); //Get steering
-        j = j + 250;
+        j = j - 275;
+        
+        /*
+         * This delay makes sure that is doesn't receive too much information the servo
+         */
         delay(50);
         
         EscServo.writeMicroseconds(i); //speed
@@ -131,25 +138,30 @@ void loop(){
                 speedValue = speedValueRev;
                 break;
         }
+        if (speedValue > FULL) {
+            speedValue = FULL;
+        }
+        if (speedValue < BREAK){
+            speedValue = BREAK;
+        }
+        if(right >= 120){
+            steerValue = 120;
+            right = 120;
+        }
+        if(left <= 0){
+            steerValue = 0;
+            left = 0;
+        }
+        
+        SteerServo.write(steerValue);
+        EscServo.writeMicroseconds(speedValue);
+        
+        
     }
     
-    if (speedValue > FULL) {
-        speedValue = FULL;
-    }
-    if (speedValue < BREAK){
-        speedValue = BREAK;
-    }
-    if(right >= 120){
-        steerValue = 120;
-        right = 120;
-    }
-    if(left <= 0){
-        steerValue = 0;
-        left = 0;
-    }
     
-    SteerServo.write(steerValue);
-    EscServo.writeMicroseconds(speedValue);
+    
+    
     delay(10);
     
 }
