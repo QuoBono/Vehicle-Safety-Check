@@ -4,7 +4,7 @@
 
 
 #define NEUTRAL 1400
-#define FULL 1600
+#define FULL 1500
 #define BREAK 1000
 #define NEUTRALREVERSE 1200
 #define RIGHT 80
@@ -84,7 +84,17 @@ void loop(){
         /*
          * This delay makes sure that is doesn't receive too much information the servo
          */
+        
         delay(50);
+        
+        if(i > FULL){
+            i = FULL;
+        }
+        
+        if(i < BREAK){
+            i = BREAK;
+        }
+        
         
         EscServo.writeMicroseconds(i); //speed
         SteerServo.write(j); //steering
