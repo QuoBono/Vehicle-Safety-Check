@@ -40,17 +40,13 @@ void setup(){
     pinMode(steerCarOutput, OUTPUT);
     pinMode(SpeedCarOutput, OUTPUT);
     
-    EscServo.attach(SpeedCarOutput); //11 speed pin
-    SteerServo.attach(steerCarOutput); //steering
+    EscServo.attach(11); //11 speed pin
+    SteerServo.attach(9); //steering
     SteerServo.write(straight);
     EscServo.writeMicroseconds(NEUTRAL);
 }
 
 void loop(){
-    /*
-     int i = pulseIn(speedCarInput, HIGH); //speed
-     int j = pulseIn(steerCarInput, HIGH); //steering
-     */
     
     if(pulseIn(speedCarInput, HIGH, 27000) > 800 && pulseIn(steerCarInput, HIGH, 27000) > 800){
         joystick = true;
@@ -74,18 +70,14 @@ void loop(){
             
             delay(20);
             Serial.println("remotel");
-            Serial.print(controller);
         }
+        
+        Serial.println("Joystick");
         
         int i = pulseIn(speedCarInput, HIGH); //Get speed
         int j = pulseIn(steerCarInput, HIGH); //Get steering
-        
-        Serial.println("this is speed");
-        Serial.println(i);
-        delay(2000);
-        Serial.println("this is steer");
-        Serial.println(j);
-        delay(2000);
+        j = j + 250;
+        delay(50);
         
         EscServo.writeMicroseconds(i); //speed
         SteerServo.write(j); //steering
@@ -106,7 +98,6 @@ void loop(){
             EscServo.writeMicroseconds(NEUTRAL);
             delay(20);
             Serial.println("serial");
-            Serial.print(controller);
         }
         userInput = Serial.read();
         
