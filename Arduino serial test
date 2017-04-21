@@ -186,8 +186,8 @@
   
   
           
-          SteerServo.write((Serial.parseInt()*10) +70);
-          EscServo.writeMicroseconds(1475);
+          SteerServo.write((Serial.parseInt()) +70);
+          EscServo.writeMicroseconds(1470);
           
       }
       
